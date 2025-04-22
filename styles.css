@@ -1,0 +1,327 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #dbd0d0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 头部样式 */
+header {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    font-size: 24px;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* 主要内容区域 */
+main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+section {
+    /* background-color: #fff; */ /* 移除或注释掉原来的背景色 */
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 20px;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eee;
+}
+
+h3 {
+    font-size: 16px;
+    color: #34495e;
+    margin: 15px 0 10px;
+}
+
+/* 配置项样式 */
+.config-item {
+    margin-bottom: 15px;
+}
+
+.config-item label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+.config-item input[type="text"],
+.config-item input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.config-item input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+/* 参数和电压设置区域 */
+.params-section,
+.volt-section,
+.app-types-section,
+.sched-rules-section,
+.scenes-section,
+.hints-section {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+/* 模式设置样式 */
+.modes-section {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+.modes-section select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: white;
+    margin-bottom: 5px;
+}
+
+.modes-section select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.modes-section input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.modes-section input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.modes-section .config-item {
+    margin-bottom: 15px;
+}
+
+.modes-section .config-item label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+    font-size: 14px;
+}
+
+/* 策略编辑器样式 */
+.policies-section {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+#cpuPoliciesContainer .policy-item {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+#cpuPoliciesContainer .policy-item h4 {
+    font-size: 15px;
+    color: #495057;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dashed #ced4da;
+}
+
+.remove-policy-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+    cursor: pointer;
+    padding: 0;
+    font-weight: bold;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    transition: background-color 0.2s;
+}
+
+.remove-policy-btn:hover {
+    background-color: #c0392b;
+}
+
+.add-btn {
+    background-color: #2ecc71;
+    margin-top: 10px;
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+.add-btn:hover {
+    background-color: #27ae60;
+}
+
+/* 输入框焦点样式 */
+input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+/* 禁用状态样式 */
+input:disabled {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+}
+
+/* 错误状态样式 */
+.error input {
+    border-color: #e74c3c;
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .buttons {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+.editor-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    min-height: 600px;
+}
+
+.json-editor {
+    height: 600px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.ace_editor {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* JSON 编辑器容器样式 */
+.json-editor-container {
+    height: 400px; /* 设置一个默认高度 */
+    margin-top: 10px;
+    border: 1px solid #ddd; /* 添加边框以便查看 */
+    border-radius: 4px;
+}
+
+/* 确保 jsoneditor 内部元素正常显示 */
+.jsoneditor {
+    border: none; /* 移除 jsoneditor 默认边框 */
+}
+
+.jsoneditor .jsoneditor-menu {
+    background-color: #3498db; /* 菜单栏背景色 */
+    border-bottom: 1px solid #2980b9;
+}
+
+.jsoneditor .jsoneditor-menu > button,
+.jsoneditor .jsoneditor-menu > div.jsoneditor-modes > button {
+    color: white; /* 菜单按钮文字颜色 */
+}
+
+.jsoneditor-navigation-bar {
+     background-color: #ecf0f1; /* 导航栏背景色 */
+     border-top: 1px solid #ddd;
+     border-bottom: 1px solid #ddd;
+} 

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>配置编辑器</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsoneditor@9.10.2/dist/jsoneditor.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>在线配置编辑器</h1>
+            <div class="buttons">
+                <button id="importBtn">导入配置</button>
+                <button id="exportBtn">导出配置</button>
+                <input type="file" id="fileInput" accept=".json" style="display: none;">
+            </div>
+        </header>
+
+        <main>
+            <!-- 基本信息 -->
+            <section class="basic-info">
+                <h2>基本信息</h2>
+                <div class="config-item">
+                    <label for="name">名称:</label>
+                    <input type="text" id="name">
+                </div>
+                <div class="config-item">
+                    <label for="author">作者:</label>
+                    <input type="text" id="author">
+                </div>
+                <div class="config-item">
+                    <label for="configVersion">配置版本:</label>
+                    <input type="number" id="configVersion">
+                </div>
+            </section>
+
+            <!-- CPU调度器 -->
+            <section class="cpu-governor">
+                <h2>CPU调度器</h2>
+                <div class="config-item">
+                    <label for="cpuGovernorEnable">启用:</label>
+                    <input type="checkbox" id="cpuGovernorEnable">
+                </div>
+                <div class="params-section">
+                    <h3>基础参数</h3>
+                    <div class="config-item">
+                        <label for="cpu_maxRateHz">最大频率(Hz):</label>
+                        <input type="number" id="cpu_maxRateHz">
+                    </div>
+                    <div class="config-item">
+                        <label for="cpu_minRateHz">最小频率(Hz):</label>
+                        <input type="number" id="cpu_minRateHz">
+                    </div>
+                    <div class="config-item">
+                        <label for="cpu_activeDelay">激活延迟(ms):</label>
+                        <input type="number" id="cpu_activeDelay">
+                    </div>
+                    <div class="config-item">
+                        <label for="cpu_freqStep">频率步进:</label>
+                        <input type="number" id="cpu_freqStep">
+                    </div>
+                </div>
+                
+                <!-- CPU策略设置 -->
+                <div class="policies-section">
+                    <h3>策略设置 (Policies)</h3>
+                    <div id="cpuPoliciesEditor" class="json-editor-container"></div>
+                </div>
+
+                <!-- CPU模式设置 -->
+                <div class="modes-section">
+                    <h3>模式设置 (Modes)</h3>
+                     <div id="cpuModesEditor" class="json-editor-container"></div>
+                </div>
+            </section>
+
+            <!-- 线程调度优化 -->
+            <section class="thread-sched-opt">
+                <h2>线程调度优化</h2>
+                <div class="config-item">
+                    <label for="threadSchedOptEnable">启用:</label>
+                    <input type="checkbox" id="threadSchedOptEnable">
+                </div>
+                <div class="config-item">
+                    <label for="defaultCpus">默认CPU核心:</label>
+                    <input type="text" id="defaultCpus" placeholder="例如: 0,1,2,3,4,5,6,7">
+                </div>
+                <div class="app-types-section">
+                    <h3>应用类型设置 (App Types)</h3>
+                    <div id="appTypesEditor" class="json-editor-container"></div>
+                </div>
+                <div class="sched-rules-section">
+                    <h3>调度规则设置 (Sched Rules)</h3>
+                    <div id="schedRulesEditor" class="json-editor-container"></div>
+                </div>
+            </section>
+
+            <!-- GPU调度器 -->
+            <section class="mtk-gpu-governor">
+                <h2>GPU调度器</h2>
+                <div class="config-item">
+                    <label for="gpuGovernorEnable">启用:</label>
+                    <input type="checkbox" id="gpuGovernorEnable">
+                </div>
+                <div class="params-section">
+                    <h3>基础参数</h3>
+                    <div class="config-item">
+                        <label for="gpu_baseRateHz">基础频率(Hz):</label>
+                        <input type="number" id="gpu_baseRateHz">
+                    </div>
+                    <div class="config-item">
+                        <label for="gpu_burstRateHz">突发频率(Hz):</label>
+                        <input type="number" id="gpu_burstRateHz">
+                    </div>
+                </div>
+                <div class="volt-section">
+                    <h3>电压调节</h3>
+                    <div class="config-item">
+                        <label for="volt_minVolt">最小电压:</label>
+                        <input type="number" id="volt_minVolt">
+                    </div>
+                    <div class="config-item">
+                        <label for="volt_maxVolt">最大电压:</label>
+                        <input type="number" id="volt_maxVolt">
+                    </div>
+                    <div class="config-item">
+                        <label for="volt_voltOffset">电压偏移:</label>
+                        <input type="number" id="volt_voltOffset">
+                    </div>
+                </div>
+                <div class="modes-section">
+                    <h3>模式设置 (Modes)</h3>
+                    <div id="gpuModesEditor" class="json-editor-container"></div>
+                </div>
+            </section>
+
+            <!-- Devfreq调节器 -->
+            <section class="devfreq-tuner">
+                <h2>Devfreq调节器</h2>
+                <div class="config-item">
+                    <label for="devfreqTunerEnable">启用:</label>
+                    <input type="checkbox" id="devfreqTunerEnable">
+                </div>
+            </section>
+
+            <!-- 温控 -->
+            <section class="thermal">
+                <h2>温控</h2>
+                <div class="config-item">
+                    <label for="thermalEnable">启用:</label>
+                    <input type="checkbox" id="thermalEnable">
+                </div>
+                <div class="params-section">
+                    <h3>基础参数</h3>
+                    <div class="config-item">
+                        <label for="thermal_interval">检测间隔(ms):</label>
+                        <input type="number" id="thermal_interval">
+                    </div>
+                    <div class="config-item">
+                        <label for="thermal_actionDelay">动作延迟(ms):</label>
+                        <input type="number" id="thermal_actionDelay">
+                    </div>
+                    <div class="config-item">
+                        <label for="thermal_matchRule">匹配规则:</label>
+                        <input type="text" id="thermal_matchRule">
+                    </div>
+                </div>
+                <div class="modes-section">
+                    <h3>模式设置 (Modes)</h3>
+                     <div id="thermalModesEditor" class="json-editor-container"></div>
+                </div>
+            </section>
+
+            <!-- 触发器 -->
+            <section class="trigger">
+                <h2>触发器</h2>
+                <div class="config-item">
+                    <label for="triggerEnable">启用:</label>
+                    <input type="checkbox" id="triggerEnable">
+                </div>
+                <div class="scenes-section">
+                    <h3>场景设置 (Scenes)</h3>
+                    <div id="scenesEditor" class="json-editor-container"></div>
+                </div>
+                <div class="hints-section">
+                    <h3>提示设置 (Hints)</h3>
+                    <div id="hintsEditor" class="json-editor-container"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/jsoneditor@9.10.2/dist/jsoneditor.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
